@@ -1,5 +1,3 @@
-# grade-//excel成績
-
 import java.util.Scanner;
 
 class Student{
@@ -28,8 +26,8 @@ class Main {
     }
 
     for(int i=1 ; i<=num-1 ; i++){
-      for(int j=1 ; j<=num ; j++){
-        if(stu[i].average < stu[j].average){
+      for(int j=i+1 ; j<=num ; j++){
+        if(stu[i].average > stu[j].average){
           int tem = rank[i];
           rank[i] = rank[j];
           rank[j] = tem;
@@ -40,9 +38,11 @@ class Main {
     for(int i=1 ; i<=num ; i++){
       stu[ rank[i] ].rank=i;
     }
+    
+    
   }
   
-  static void output(Student [] Stu , int num){
+  static void output(Student [] stu , int num){
     
     System.out.printf("%-10s","num");
     System.out.printf("%-10s","Chinese");
@@ -55,24 +55,25 @@ class Main {
     
     for(int i = 1;i <= num;i++){
       System.out.printf("%10d",i);
-      System.out.printf("%10d",Stu[i].Chinese);
-      System.out.printf("%10d",Stu[i].Math);
-      System.out.printf("%10d",Stu[i].English);
-      System.out.printf("%10.2f",Stu[i].average);
-      System.out.printf("%10.2f",Stu[i].rank);
+      System.out.printf("%10d",stu[i].Chinese);
+      System.out.printf("%10d",stu[i].Math);
+      System.out.printf("%10d",stu[i].English);
+      System.out.printf("%10.2f",stu[i].average);
+      System.out.printf("%10d",stu[i].rank);
       System.out.println();
     }
   }
 
-  static void input(Student [] Stu , int num){
+  static void input(Student [] stu , int num){
     
     Scanner cin = new Scanner (System.in);
     for(int i = 1;i <= num;i++){
       int Chinese = cin.nextInt();
       int Math    = cin.nextInt();
       int English = cin.nextInt();
-      Stu[i] = new Student(Chinese , Math , English);
+      stu[i] = new Student(Chinese , Math , English);
     }
+    cin.close();
   }
 
   public static void main(String[] args) {
@@ -89,4 +90,3 @@ class Main {
   }
 
 }
-
